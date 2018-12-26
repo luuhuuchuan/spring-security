@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 public class Role implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -26,7 +26,7 @@ public class Role implements Serializable {
 	private String name;
 	
 	@ManyToMany(mappedBy = "roles")
-	private Set<User> users;
+	private Set<Users> users;
 	
 	public Role() {
 	}
@@ -51,11 +51,11 @@ public class Role implements Serializable {
 		this.name = name;
 	}
 
-	public Set<User> getUsers() {
+	public Set<Users> getUsers() {
 		return users;
 	}
 
-	public void setUsers(Set<User> users) {
+	public void setUsers(Set<Users> users) {
 		this.users = users;
 	}
 	

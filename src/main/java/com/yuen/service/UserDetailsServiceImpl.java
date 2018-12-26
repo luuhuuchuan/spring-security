@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yuen.domain.Role;
-import com.yuen.domain.User;
+import com.yuen.domain.Users;
 import com.yuen.repository.UserRepository;
 
 @Service
@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findByEmail(username);
+		Users user = userRepository.findByUsername(username);
 		if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
@@ -37,7 +37,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		}
 		
 		return new org.springframework.security.core.userdetails.User(
-				user.getEmail(), user.getPassword(), grantedAuthorities);
+				user.getUsername(), user.getPassword(), grantedAuthorities);
 	}
 
 }

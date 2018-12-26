@@ -1,11 +1,13 @@
 package com.yuen.repository;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import com.yuen.domain.User;
+import com.yuen.domain.Users;
 
-public interface UserRepository extends CrudRepository<User, Integer> {
+@Repository
+public interface UserRepository extends CrudRepository<Users, Integer> {
 	
-	User findByEmail(String email);
+	Users findByUsername(String username);
 	
 }

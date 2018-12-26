@@ -2,15 +2,15 @@ package com.yuen.config;
 
 import java.util.HashSet;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.yuen.domain.Role;
-import com.yuen.domain.User;
+import com.yuen.domain.Users;
 import com.yuen.repository.RoleRepository;
 import com.yuen.repository.UserRepository;
 
@@ -24,7 +24,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 	@Autowired
 	private RoleRepository roleRepository;
 	
-	@Autowired 
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
 	@Override
@@ -39,9 +39,9 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 		}
 		
 		// Admin account
-		if (userRepository.findByEmail("admin@gmail.com") == null) {
-			User admin = new User();
-			admin.setEmail("admin@gmail.com");
+		if (userRepository.findByUsername("admin") == null) {
+			Users admin = new Users();
+			admin.setUsername("admin");
 			admin.setPassword(passwordEncoder.encode("123456"));
 			HashSet<Role> roles = new HashSet<>();
 			roles.add(roleRepository.findByName("ROLE_ADMIN"));
@@ -51,9 +51,9 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 		}
 		
 		// Member account
-		if (userRepository.findByEmail("member@gmail.com") == null) {
-			User user = new User();
-			user.setEmail("member@gmail.com");
+		if (userRepository.findByUsername("member") == null) {
+			Users user = new Users();
+			user.setUsername("member");
 			user.setPassword(passwordEncoder.encode("123456"));
 			HashSet<Role> roles = new HashSet<>();
 			roles.add(roleRepository.findByName("ROLE_MEMBER"));
