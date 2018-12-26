@@ -1,10 +1,3 @@
-# spring-security
-
-Demo project for Spring Security:
-- Login
-- Logout
-- Authorizing
-
 using:
 
 - Spring Boot
